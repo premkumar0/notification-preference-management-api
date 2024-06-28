@@ -53,9 +53,50 @@ This project provides REST APIs for managing user notification preferences, incl
 - **GET /api/notification-types/**: Retrieve all notification types.
 - **POST /api/notification-types/**: Create a new notification type. *(Accessible only for admins; login with admin credentials required)*
 
+make use of `/api/notification-types/<pk>/` end point for making any changes or deleting the notification type
+
 ### Notification Preferences
 - **GET /api/notification-preferences/**: Retrieve the authenticated user's notification preferences.
 - **POST /api/notification-preferences/update_preferences/**: Update the authenticated user's notification preferences.
+
+Use json data format provided for updating the preferences
+```json
+[
+    {
+        "id": 1,
+        "notification_type": {
+            "id": 1,
+            "name": "TOP_PRIORITIES"
+        },
+        "frequency": "INSTANTLY",
+        "email": true,
+        "push": false,
+        "sms": true
+    },
+    {
+        "id": 2,
+        "notification_type": {
+            "id": 2,
+            "name": "SCORE_CHANGES"
+        },
+        "frequency": "INSTANTLY",
+        "email": false,
+        "push": false,
+        "sms": true
+    },
+    {
+        "id": 3,
+        "notification_type": {
+            "id": 3,
+            "name": "BUDGETING_AND_SPENDING"
+        },
+        "frequency": "RARELY",
+        "email": false,
+        "push": false,
+        "sms": false
+    }
+]
+```
 
 ## Testing the APIs
 - Use the Django Rest Framework's browsable API to manually test APIs, logging in as both an admin user and a normal user.
